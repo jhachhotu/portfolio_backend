@@ -103,8 +103,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # CORS Settings
 CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOWED_ORIGINS = [
-    os.getenv('FRONTEND_URL'),
-    os.getenv('LIVE_URL')
+    os.getenv('FRONTEND_URL').rstrip('/'),
+    os.getenv('LIVE_URL').rstrip('/')
 ]
 
 # Email Configuration
