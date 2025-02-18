@@ -53,8 +53,10 @@ class SendMessage(APIView):
                 )
                 return Response(serializer.data, status=status.HTTP_201_CREATED)
             except Exception as e:
+                # Save the message even if email fails
+                message.save()
                 return Response(
-                    {'error': 'Failed to send email'},
+                    {'error': 'Failed to send email but message saved'},
                     status=status.HTTP_500_INTERNAL_SERVER_ERROR
                 )
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
