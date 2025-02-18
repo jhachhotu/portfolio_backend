@@ -28,12 +28,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
-    'portfolio-b2hs.onrender.com',  # Add your Render host
-    '127.0.0.1',  # Localhost IP
-    'localhost',  # Localhost domain
+    'portfolio-b2hs.onrender.com',  # Your Render host
+    '127.0.0.1',
+    'localhost',
 ]
 
 
@@ -95,16 +95,13 @@ DATABASES = {
 }
 
 # Add this for production
-if os.getenv('DOCKER') == '1':
+if os.getenv('RENDER', 'False') == 'True':
+    import dj_database_url
     DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'portfolio',
-            'USER': 'portfolio',
-            'PASSWORD': 'portfolio',
-            'HOST': 'db',
-            'PORT': 5432,
-        }
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600
+        )
     }
 
 
