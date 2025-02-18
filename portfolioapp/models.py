@@ -3,7 +3,7 @@ from django.db import models
 class Hero(models.Model):
     title = models.CharField(max_length=200)
     desc = models.TextField()
-    social_links = models.JSONField()
+    social_links = models.JSONField(default=list)
     resume_link = models.CharField(max_length=255)
 
     def __str__(self):

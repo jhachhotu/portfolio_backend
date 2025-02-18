@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'portfolioapp',
+    'django_json_widget',
 ]
 
 MIDDLEWARE = [

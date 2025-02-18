@@ -5,3 +5,4 @@ gunicorn
 django-cors-headers
 whitenoise
 psycopg2-binary
+django-json-widget
